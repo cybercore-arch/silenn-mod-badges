@@ -1,13 +1,17 @@
 name: approve
 on:
   issues:
-    types: [labeled]
+    types: [opened, labeled]
 permissions:
   contents: write
   issues: write
 jobs:
   apply:
-    if: github.event.label.name == 'approved'
+    # «Надеть значок» применяется сразу при создании заявки;
+    # «Новый значок» только после метки approved от модератора.
+    if: >-
+      (github.event.action == 'opened' && contains(join(github.event.issue.labels.*.name, ','), 'wear-badge')) ||
+      (github.event.action == 'labeled' && github.event.label.name == 'approved')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

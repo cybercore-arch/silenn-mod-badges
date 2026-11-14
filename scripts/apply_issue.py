@@ -15,6 +15,7 @@ def main():
     labels = {l["name"] for l in issue["labels"]}
     f = fields(issue["body"])
     if "new-badge" in labels:
+        if "approved" not in labels: return "Нужно одобрение модератора (метка approved)."
         bid = f.get("Id значка", "")
         if not ID_RE.match(bid): return "Плохой id."
         cat = load("catalog.json")
