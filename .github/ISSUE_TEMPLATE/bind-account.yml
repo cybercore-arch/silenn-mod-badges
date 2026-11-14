@@ -1,0 +1,19 @@
+name: Привязать аккаунт
+description: Один раз подтвердить, что аккаунт TikTok ваш. Нужен, чтобы надевать значки
+labels: ["bind-account"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        1. В моде (Каталог значков → Привязать аккаунт) возьмите код и впишите его в описание профиля TikTok.
+        2. Заполните форму. Модератор проверит код в профиле и привяжет аккаунт к вашему GitHub.
+        3. После этого значки надеваются автоматически, но только с этого GitHub.
+        Нет GitHub или потеряли его? Напишите владельцу в Telegram: @silennwav. Спам — бан навсегда.
+  - type: input
+    id: account
+    attributes: {label: "Id аккаунта TikTok", description: "Только цифры"}
+    validations: {required: true}
+  - type: input
+    id: code
+    attributes: {label: "Код из мода", placeholder: "eq-xxxxxxxx"}
+    validations: {required: true}
