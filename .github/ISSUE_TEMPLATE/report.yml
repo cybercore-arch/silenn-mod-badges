@@ -1,0 +1,12 @@
+name: Жалоба
+description: Пожаловаться на значок
+labels: ["report"]
+body:
+  - type: input
+    id: badge
+    attributes: {label: "Id значка"}
+    validations: {required: true}
+  - type: textarea
+    id: reason
+    attributes: {label: "Причина"}
+    validations: {required: true}

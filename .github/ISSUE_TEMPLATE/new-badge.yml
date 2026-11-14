@@ -1,0 +1,23 @@
+name: Новый значок
+description: Заявка на добавление значка в общий каталог
+labels: ["new-badge"]
+body:
+  - type: input
+    id: id
+    attributes: {label: "Id значка", description: "a-z, 0-9, дефис, 3–32 символа", placeholder: "star-2026"}
+    validations: {required: true}
+  - type: input
+    id: title
+    attributes: {label: "Название"}
+    validations: {required: true}
+  - type: input
+    id: author
+    attributes: {label: "Автор (ник)"}
+    validations: {required: true}
+  - type: textarea
+    id: description
+    attributes: {label: "Описание"}
+  - type: textarea
+    id: image
+    attributes: {label: "Картинка", description: "Перетащите PNG сюда (до 256×256, до 100 КБ)"}
+    validations: {required: true}

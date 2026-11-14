@@ -1,0 +1,31 @@
+name: approve
+on:
+  issues:
+    types: [labeled]
+permissions:
+  contents: write
+  issues: write
+jobs:
+  apply:
+    if: github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: apply
+        env:
+          ISSUE_JSON: ${{ toJSON(github.event.issue) }}
+        run: |
+          printf '%s' "$ISSUE_JSON" > issue.json
+          python3 scripts/apply_issue.py issue.json > reply.txt
+          rm issue.json
+          python3 scripts/validate.py && python3 scripts/build_badges.py
+      - name: commit and answer
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A images catalog.json wearers.json badges.json
+          git diff --cached --quiet || (git commit -m "Заявка #${{ github.event.issue.number }}" && git push)
+          gh issue comment ${{ github.event.issue.number }} --body-file reply.txt
+          gh issue close ${{ github.event.issue.number }}

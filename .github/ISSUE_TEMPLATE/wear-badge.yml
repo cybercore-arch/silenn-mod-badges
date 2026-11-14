@@ -1,0 +1,12 @@
+name: Надеть значок
+description: Привязать значок из каталога к аккаунту
+labels: ["wear-badge"]
+body:
+  - type: input
+    id: account
+    attributes: {label: "Id аккаунта TikTok", description: "Только цифры"}
+    validations: {required: true}
+  - type: input
+    id: badge
+    attributes: {label: "Id значка из каталога"}
+    validations: {required: true}
