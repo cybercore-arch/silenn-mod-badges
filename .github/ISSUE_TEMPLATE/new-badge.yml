@@ -7,7 +7,7 @@ body:
     attributes: {label: "Id значка", description: "a-z, 0-9, дефис, 3–32 символа", placeholder: "star-2026"}
     validations: {required: true}
   - type: input
-    id: title
+    id: name
     attributes: {label: "Название"}
     validations: {required: true}
   - type: input
